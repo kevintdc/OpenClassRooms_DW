@@ -1,0 +1,296 @@
+@import "utils/variables.scss";
+@import "utils/mixins.scss";
+@import "utils/responsives.scss";
+@import "utils/placeholder.scss";
+
+*, *::before, *::after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    @include font-text;
+}
+
+
+/* HEADER */
+
+
+.header {
+    @extend %shadow;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 30px;
+    padding: 15px;
+    &_icon {
+        text-decoration: none;
+        color: rgb(36, 36, 36);
+        font-size: larger;
+    }
+    &_logo {
+    width: 70%;
+    height: 100%;
+    }
+}
+
+
+/* MAIN */
+
+
+.menu {
+    height: 100%;
+    z-index: 1;
+    background-color: #f2f2f2;
+    border-radius: 40px 40px 0 0;
+    padding: 15px;
+    margin-top: -60px;
+    position: relative;
+    &_img img {
+        height: 280px;
+        width: 100%;
+        object-fit: cover;
+    }
+    &_head {
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+    }
+    &_title {
+        @include font-title;
+        padding: 15px 0;
+    }
+    &_heart {
+        text-align: center;
+        font-size: 25px;
+    }
+}
+.heart_container {
+    position: relative;
+    grid-column-start: 2 ;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    & i, & .heart_square {
+        position: absolute;
+        top: calc(50% - 12px);
+        left: calc(50% - 12px);
+        font-size: 25px;
+    }
+    & .heart_square {
+        width: 25px;
+        height: 25px;
+        background-color: #f2f2f2;
+    }
+    & .icon {
+        opacity: 1;
+    }
+    & .icon1 {
+        color: $color-primary;
+        display: none;
+        background: $gradient2;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    &:hover {
+        & .heart_square {
+            height: 0;
+            transition: 1s;
+        }
+        & .icon1 {
+            display: block;
+        }
+        & .icon {
+            height: 0;
+            transition: 0.7s;
+            opacity: 0;
+            cursor: pointer;
+        }
+    }
+}
+
+/* DISHES */
+
+.dish {
+    margin: 50px 0;
+    &_border {
+        width: 35px;
+        border-bottom: 3px solid $color-tertary; 
+        padding-bottom: 3px;
+        margin: 0 5px;
+    }
+}
+
+.dish_head {
+    text-transform: uppercase;
+    font-weight: 300;
+}
+.container_dish {
+    background-color: #fff;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-between;
+    height: 70px;
+    overflow: hidden;
+    margin: 10px 0;
+    @extend %shadow;
+}
+.dish_card{
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+    padding: 14px;
+    @include ellipsis;
+    &_body {
+        @include ellipsis;
+        &_title + &_desc {
+            @include ellipsis;
+        }
+    }
+    &:hover {
+        cursor: pointer;
+        & + .dish_card_box {
+            width: 60px;
+            transition: 0.6s;
+        & i {
+            transform: rotate(360deg);
+            transition: all 1s;
+            }
+        }
+    }
+    &_price {
+        align-self: end;
+        // margin-bottom: 8px;
+    }
+    &_box {
+        background: $color-tertary;
+        border-radius: 0 15px 15px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 0px;
+        overflow: hidden;
+        &_icon {
+            color: #fff;
+            font-size: 22px;
+        }
+    }
+}
+
+@keyframes reveal-menu {
+    0% {
+        opacity: 0;
+        margin-top: 20px;
+    }
+    20% {
+        opacity: 0.1;
+    }
+    30% {
+        opacity: 0.2;
+    }
+    40% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    60% {
+        opacity: 0.65;
+    }
+    80% {
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 1;
+        margin-top: 0;
+    }
+}
+
+.container_dish {
+    &_1 {
+        animation: reveal-menu 1s;
+        }
+    &_2 {
+        animation: reveal-menu 1.25s;
+        }
+    &_3 {
+        animation: reveal-menu 1.5s;
+        }
+    &_3bis {
+        animation: reveal-menu 1.75s;
+        }
+
+
+    &_4 {
+        animation: reveal-menu 2s;
+        }
+    &_5 {
+        animation: reveal-menu 2.25s;
+        }
+    &_6 {
+        animation: reveal-menu 2.5s;
+        }
+
+
+    &_7 {
+        animation: reveal-menu 3s;
+        }
+    &_8 {
+        animation: reveal-menu 3.25s;
+        }
+    &_9 {
+        animation: reveal-menu 3.5s;
+        }
+}
+
+/* BUTTON EXPLORE + COMMAND */
+
+
+#btn {
+    display: flex;
+    justify-content: center;
+    margin: 50px 0 70px 0;
+}
+.btn {
+    @include btn;
+    @extend %shadow;
+    padding: 15px 50px;
+    &:hover {
+        cursor: pointer;
+        opacity: 0.7;
+        transition: all 0.7s;
+        @extend %darkenshadow;
+    }
+}
+
+
+/* FOOTER */
+
+
+.footer {
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-color: rgb(48, 48, 48);
+    color: white;
+    padding: 20px;
+    &_logo {
+        width: 50%;
+        color: white;
+        @include font-title;
+    }
+    &_icon {
+        width: 20px;
+        font-size: smaller;
+        text-align: center;
+    }
+    & a {
+        text-decoration: none;
+        color: #fff;
+        &:hover {
+            color: $color-secondary;
+            transition: 0.5s;
+        }
+    }
+}
